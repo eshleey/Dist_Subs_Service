@@ -1,42 +1,86 @@
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
+class Message {
+    private String demand;
+    private String response;
+
+    public Message(String demand, String response) {
+        this.demand = demand;
+        this.response = response;
+    }
+
+    public String getDemand() {
+        return demand;
+    }
+
+    public String getResponse() {
+        return response;
+    }
+
+    // Setters ekleyin
+    public void setDemand(String demand) {
+        this.demand = demand;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
+}
+
 public class Server {
     public static void main(String[] args) {
-        int port = 5001; // Server1 için port numarası
+        int port = 5001; 
         String host = "localhost";
 
-        // Diğer sunucuların portları
+        
         int server2Port = 5002;
         int server3Port = 5003;
 
-        // Server (dinleyici) işlemi
+        
         new Thread(() -> {
             try (ServerSocket serverSocket = new ServerSocket(port)) {
-                System.out.println("Server1 dinlemeye başladı. Port: " + port);
-                
+                System.out.println("Server dinlemeye başladı. Port: " + port);
+
                 // Bağlantıları kabul et
                 while (true) {
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("Bir bağlantı kuruldu: " + clientSocket.getRemoteSocketAddress());
+
+                    // İstemciden gelen mesajı al
+                    ObjectInputStream input = new ObjectInputStream(clientSocket.getInputStream());
+                    Message message = (Message) input.readObject();
+
+                    
+                    System.out.println("Gelen talep: " + message.getDemand());
+
+                    
+                    message.setResponse("YEP");
+
+                    
+                    ObjectOutputStream output = new ObjectOutputStream(clientSocket.getOutputStream());
+                    output.writeObject(message);
                 }
-            } catch (IOException e) {
-                System.out.println("Server1 hata oluştu: " + e.getMessage());
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Server hata oluştu: " + e.getMessage());
                 e.printStackTrace();
             }
         }).start();
 
-        // Client işlemi (Diğer sunuculara bağlanma)
+        // Client işlemi 
         new Thread(() -> {
             try {
-                // Server2'ye bağlan
+                
                 Socket connection1 = new Socket(host, server2Port);
-                System.out.println("Server1 -> Server2 bağlantısı kuruldu.");
+                System.out.println("Server -> Server2 bağlantısı kuruldu.");
 
-                // Server3'e bağlan
+                
                 Socket connection2 = new Socket(host, server3Port);
-                System.out.println("Server1 -> Server3 bağlantısı kuruldu.");
+                System.out.println("Server -> Server3 bağlantısı kuruldu.");
 
             } catch (IOException e) {
                 System.out.println("Bağlantı kurulurken hata oluştu: " + e.getMessage());
