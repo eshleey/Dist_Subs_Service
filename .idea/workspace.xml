@@ -108,7 +108,7 @@
       <module name="Odev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="communication.*" />
+          <option name="PATTERN" value="dist_servers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,7 +121,7 @@
       <module name="Odev" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="communication.*" />
+          <option name="PATTERN" value="dist_servers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
