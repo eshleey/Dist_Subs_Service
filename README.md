@@ -1,43 +1,24 @@
 # Dağıtık Abonelik Sistemi (Distributed Subscriber Service)
-Bu dosya üzerinden projede gerçeklediklerinizi izah ediniz.
 
+### plotter.py
 
-izah izah izah izah izah izah izah izah izah izah izah izah izah 
-izah izah izah izah izah izah izah izah izah izah izah izah izah 
+- [x] admin.rb'den kapasite değerlerini alır.
+- [x] admin.rb ile socket üzerinden iletişim kurar.
+- [x] gelen kapasite değerlerini grafiğe döker.
 
+### admin.rb
 
-### plotter.py Solar System Exploration, 1950s – 1960s
+- [x] serverlar ile socket üzerinden iletişim kurar.
+- [x] serverlara 5 saniyede bir kapasite sorgusu gönderir.
+- [x] serverlara birbirlerine bağlanmak için strt emri gönderir.
+- [x] strt emrine karşılık gelen mesaj isteklerini alır.
+- [x] kapasite sorgusuna karşılık gelen kapasite değerlerini alır.
 
-- [ ] Mercury
-- [x] Venus
-- [x] Earth (Orbit/Moon)
-- [x] Mars
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
+### ServerX.java
 
-### admin.rb Solar System Exploration, 1950s – 1960s
-
-- [ ] Mercury
-- [x] Venus
-- [x] Earth (Orbit/Moon)
-- [x] Mars
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
-
-### ServerX.java Solar System Exploration, 1950s – 1960s
-
-- [ ] Mercury
-- [x] Venus
-- [x] Earth (Orbit/Moon)
-- [x] Mars
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
+- [x] admin.rbden gelen kapasite sorgusunu alır.
+- [x] gelen kapasite sorgusuna karşılık kapasite değerleri gönderir.
+- [x] admin.rbden gelen strt emrini alır.
+- [x] gelen strt emrine karşılık yep veya nope mesajları gönderir.
+- [x] istemcilerle socketler üzerinden haberleşir.
+- [x] istemcilerden subcriber nesnsi alır.
