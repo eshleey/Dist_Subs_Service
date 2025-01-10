@@ -23,3 +23,6 @@
 - [x] istemcilerle socketler üzerinden haberleşir.
 - [x] istemcilerden subcriber nesnesi alır.
 - [x] gelen subscriber nesnelerine göre gerekli işlemleri yapar.
+
+Sunum Videosu Linki:
+https://drive.google.com/file/d/1c_x8DlbgNzi5RSm2wrm_Z2JCiVdy_NjV/view?usp=sharing
