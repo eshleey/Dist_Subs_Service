@@ -1,10 +1,10 @@
 # Dağıtık Abonelik Sistemi (Distributed Subscriber Service)
 
-### plotter.py
+22060344 Elif Sude ÇETİNKAYA
+22060385 Zeynep Ravza DURSUN
+22060374 Tuba SARIKAYA
 
-- [x] admin.rb'den kapasite değerlerini alır.
-- [x] admin.rb ile socket üzerinden iletişim kurar.
-- [x] gelen kapasite değerlerini grafiğe döker.
+### plotter.py
 
 ### admin.rb
 
@@ -21,4 +21,5 @@
 - [x] admin.rbden gelen strt emrini alır.
 - [x] gelen strt emrine karşılık yep veya nope mesajları gönderir.
 - [x] istemcilerle socketler üzerinden haberleşir.
-- [x] istemcilerden subcriber nesnsi alır.
+- [x] istemcilerden subcriber nesnesi alır.
+- [x] gelen subscriber nesnelerine göre gerekli işlemleri yapar.
