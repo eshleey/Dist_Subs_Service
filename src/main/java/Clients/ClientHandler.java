@@ -2,6 +2,8 @@ package Clients;
 
 import communication.ProtobufHandler;
 import communication.SubscriberOuterClass.Subscriber;
+import dist_servers.DistributedSystem;
+import dist_servers.ServerHandler;
 
 import java.util.Arrays;
 import java.io.DataInputStream;
@@ -15,21 +17,14 @@ public class ClientHandler {
     private static DataOutputStream output;
     private static DataInputStream input;
 
-    private static final ProtobufHandler protobufHandler = new ProtobufHandler();
-
-    public static void connectServer(int port) throws IOException {
-        if (socket != null && !socket.isClosed()) {
-            System.out.println("Already connected to a server.");
-            return;
-        }
+    public static void connectServer(int clientPort) throws IOException {
         try {
-            socket = new Socket(SERVER_HOST, port);
+            socket = new Socket(SERVER_HOST, clientPort);
             output = new DataOutputStream(socket.getOutputStream());
             input = new DataInputStream(socket.getInputStream());
-            System.out.println("Connected to server: " + SERVER_HOST + ":" + port);
-        } catch (IOException ie) {
-            System.err.println("Connection error: " + ie.getMessage());
-            throw ie;
+            System.out.println("Connected to server: " + SERVER_HOST + ":" + clientPort);
+        } catch (IOException e) {
+            System.err.println("Connection error: " + e.getMessage() + " to " + clientPort);
         }
     }
 
@@ -63,12 +58,12 @@ public class ClientHandler {
         };
 
         System.out.println("Subscriber: " + subscriber);
-        protobufHandler.sendProtobufMessage(output, subscriber);
+        ProtobufHandler.sendProtobufMessage(output, subscriber);
         System.out.println("Request: " + request);
     }
 
     public static void receiveResponse(DataInputStream input) throws IOException {
-        Subscriber subscriber = protobufHandler.receiveProtobufMessage(input, Subscriber.class);
+        Subscriber subscriber = ProtobufHandler.receiveProtobufMessage(input, Subscriber.class);
         if (subscriber != null) {
             System.out.println("Response received: " + subscriber);
         } else {
